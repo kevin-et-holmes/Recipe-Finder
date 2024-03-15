@@ -1,13 +1,20 @@
 import logo from "./logo.svg";
 import "./App.css";
 import axios from "axios";
+import { useState } from "react";
 
 function App() {
-  axios.get("http://localhost:3001").then((response) => {
+  axios.get("/").then((response) => {
     console.log(response.data);
   });
 
-  function getRecipe() {}
+  const [recipes, setRecipes] = useState(["test", "test2", "test3"]);
+
+  function recipesList() {
+    let list = recipes.map((n) => <li key={n}>{n}</li>);
+    return list;
+  }
+  function getRecipes() {}
 
   return (
     <div className="App">
@@ -15,12 +22,13 @@ function App() {
       <p>Seperate ingredients with comma</p>
       <form>
         <input type="text" id="searchInput" placeholder="Enter ingredients" />
-        <button type="submit" onClick={getRecipe()}>
+        <button type="submit" onClick={getRecipes}>
           Search
         </button>
       </form>
       <div className="output">
         Recipies: <span id="result"></span>
+        <ul id="recipes">{recipesList()}</ul>
       </div>
     </div>
   );
