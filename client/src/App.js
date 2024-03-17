@@ -11,8 +11,9 @@ function App() {
   const [recipes, setRecipes] = useState(["test", "test2", "test3"]);
 
   function recipesList() {
-    let list = recipes.map((n) => <li key={n}>{n}</li>);
-    return list;
+    //let list = recipes.map((n) => <li key={n}>{n}</li>);
+    //return list;
+    return recipes.map((n) => <li key={n}>{n.recipe}</li>);
   }
 
   function getRecipes() {
