@@ -7,7 +7,7 @@ function App() {
     //console.log(response.data);
   });
 
-  const [recipes, setRecipes] = useState(["test", "test2", "test3"]);
+  const [recipes, setRecipes] = useState([]);
 
   const mappedRecipes = recipes.map((recipe, index) => {
     return <li key={index}>{recipe.recipe}</li>;

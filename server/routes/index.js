@@ -8,11 +8,19 @@ router.post("/recipes", async (req, res) => {
   //let ingredients = [];
   try {
     let ingredients = req.body.ingredients.split(",");
-    const recipesData = await recipes.find({
+    let recipesData = await recipes.find({
       ingredients: { $in: ingredients },
     });
-    console.log(recipesData);
-    res.json(recipesData);
+    let recipeDataSorted = recipesData.sort((a, b) => {
+      return (
+        b.ingredients.filter((ingredient) => ingredients.includes(ingredient))
+          .length -
+        a.ingredients.filter((ingredient) => ingredients.includes(ingredient))
+          .length
+      );
+    });
+    console.log("data: ", recipeDataSorted);
+    res.json(recipeDataSorted);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
