@@ -9,10 +9,9 @@ function App() {
 
   const [recipes, setRecipes] = useState(["test", "test2", "test3"]);
 
-  function recipesList() {
-    const id = recipes.map((n) => n._id);
-    return recipes.map((id) => <li key={id}>{id.recipe}</li>);
-  }
+  const mappedRecipes = recipes.map((recipe, index) => {
+    return <li key={index}>{recipe.recipe}</li>;
+  });
 
   function getRecipes() {
     let ingredients = document.getElementById("searchInput").value;
@@ -39,7 +38,7 @@ function App() {
       <button onClick={getRecipes}>Search</button>
       <div className="output">
         Recipes: <span id="result"></span>
-        <ul id="recipes">{recipesList()}</ul>
+        <ul id="recipes">{mappedRecipes}</ul>
       </div>
     </div>
   );
