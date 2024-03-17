@@ -6,7 +6,7 @@ const recipes = require("../Schema/recipes-schema");
 
 router.get("/recipes", async (req, res) => {
   try {
-    const recipesData = await recipes.find({ recipe: "beef tacos" });
+    const recipesData = await recipes.find({ ingredients: "cheese" });
     res.json(recipesData);
   } catch (err) {
     console.error(err.message);
