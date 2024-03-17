@@ -10,17 +10,18 @@ function App() {
   const [recipes, setRecipes] = useState(["test", "test2", "test3"]);
 
   function recipesList() {
-    const id = recipes.data;
-    return recipes.map((n) => <li key={n}>{n.recipe}</li>);
-    console.log(recipes);
+    const id = recipes.map((n) => n._id);
+    return recipes.map((id) => <li key={id}>{id.recipe}</li>);
   }
 
   function getRecipes() {
     let ingredients = document.getElementById("searchInput").value;
+    //ingredients = ingredients.toString().split(",");
+
     axios
       .post(`/recipes/`, { ingredients: ingredients })
       .then((response) => {
-        console.log(response.data, ingredients);
+        //console.log(response.data);
         setRecipes(response.data);
       })
       .catch((error) => {

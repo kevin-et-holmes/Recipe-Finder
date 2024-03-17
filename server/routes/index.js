@@ -5,10 +5,13 @@ const recipes = require("../Schema/recipes-schema");
 //const recipes = ["test4", "test5", "test6"];
 
 router.post("/recipes", async (req, res) => {
+  //let ingredients = [];
   try {
-    const { ingredients } = req.body;
-    console.log(ingredients);
-    const recipesData = await recipes.find({ ingredients: "cheese" });
+    let ingredients = req.body.ingredients.split(",");
+    const recipesData = await recipes.find({
+      ingredients: { $in: ingredients },
+    });
+    console.log(recipesData);
     res.json(recipesData);
   } catch (err) {
     console.error(err.message);
