@@ -4,8 +4,10 @@ const db = mongoose.connection;
 const recipes = require("../Schema/recipes-schema");
 //const recipes = ["test4", "test5", "test6"];
 
-router.get("/recipes", async (req, res) => {
+router.post("/recipes", async (req, res) => {
   try {
+    const { ingredients } = req.body;
+    console.log(ingredients);
     const recipesData = await recipes.find({ ingredients: "cheese" });
     res.json(recipesData);
   } catch (err) {

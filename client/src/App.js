@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import axios from "axios";
 import { useState } from "react";
@@ -17,11 +16,16 @@ function App() {
   }
 
   function getRecipes() {
-    //let ingredients = document.getElementById("searchInput").value;
-    axios.get(`http://localhost:3001/recipes/`).then((response) => {
-      console.log(response.data);
-      setRecipes(response.data);
-    });
+    let ingredients = document.getElementById("searchInput").value;
+    axios
+      .post(`/recipes/`, { ingredients: ingredients })
+      .then((response) => {
+        console.log(response.data, ingredients);
+        setRecipes(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
@@ -33,7 +37,7 @@ function App() {
       </form>
       <button onClick={getRecipes}>Search</button>
       <div className="output">
-        Recipies: <span id="result"></span>
+        Recipes: <span id="result"></span>
         <ul id="recipes">{recipesList()}</ul>
       </div>
     </div>
