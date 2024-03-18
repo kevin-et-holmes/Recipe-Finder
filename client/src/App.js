@@ -10,7 +10,13 @@ function App() {
   const [recipes, setRecipes] = useState([]);
 
   const mappedRecipes = recipes.map((recipe, index) => {
-    return <li key={index}>{recipe.recipe}</li>;
+    const ingredients = recipe.ingredients.toString().split(",");
+    return (
+      <div id="recipe" key={index}>
+        <h2>{recipe.recipe}</h2>
+        <p>Ingredients: {ingredients.join(", ")}</p>
+      </div>
+    );
   });
 
   function getRecipes() {
@@ -38,7 +44,7 @@ function App() {
       <button onClick={getRecipes}>Search</button>
       <div className="output">
         Recipes: <span id="result"></span>
-        <ul id="recipes">{mappedRecipes}</ul>
+        <div>{mappedRecipes}</div>
       </div>
     </div>
   );
