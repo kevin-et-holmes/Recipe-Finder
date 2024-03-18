@@ -1,14 +1,5 @@
 .App {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-li {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
 }
 
 #recipe {
@@ -19,4 +10,31 @@ li {
   border-width: 1px;
   margin: 10px;
   width: 300px;
+}
+
+#searchInput {
+  margin-bottom: 10px;
+}
+
+#searchButton {
+  margin-bottom: 10px;
+}
+
+.recipeList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
+}
+
+#ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 0 10px 0;
+}
+
+hr.solid {
+  border-top: 3px solid gray;
+  width: 150px;
 }

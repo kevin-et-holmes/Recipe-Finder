@@ -14,7 +14,7 @@ function App() {
     return (
       <div id="recipe" key={index}>
         <h2>{recipe.recipe}</h2>
-        <p>Ingredients: {ingredients.join(", ")}</p>
+        <p id="ingredients">Ingredients: {ingredients.join(", ")}</p>
       </div>
     );
   });
@@ -41,11 +41,14 @@ function App() {
       <form>
         <input type="text" id="searchInput" placeholder="Enter ingredients" />
       </form>
-      <button onClick={getRecipes}>Search</button>
+      <button id="searchButton" onClick={getRecipes}>
+        Search
+      </button>
       <div className="output">
-        Recipes: <span id="result"></span>
-        <div>{mappedRecipes}</div>
+        Recipes:
+        <div className="recipeList">{mappedRecipes}</div>
       </div>
+      <hr className="solid" />
     </div>
   );
 }
