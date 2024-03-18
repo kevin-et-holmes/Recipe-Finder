@@ -7,10 +7,14 @@ const recipes = require("../Schema/recipes-schema");
 router.post("/recipes", async (req, res) => {
   //let ingredients = [];
   try {
-    let ingredients = req.body.ingredients.split(",");
+    let ingredients = req.body.ingredients.split(",").map((ingredient) => {
+      return ingredient.trim();
+    });
+    //console.log("ingredients: ", req.body.ingredients);
     let recipesData = await recipes.find({
       ingredients: { $in: ingredients },
     });
+    //console.log("data: ", recipesData);
     let recipeDataSorted = recipesData.sort((a, b) => {
       return (
         b.ingredients.filter((ingredient) => ingredients.includes(ingredient))
@@ -19,7 +23,7 @@ router.post("/recipes", async (req, res) => {
           .length
       );
     });
-    console.log("data: ", recipeDataSorted);
+    //console.log("data sorted: ", recipeDataSorted);
     res.json(recipeDataSorted);
   } catch (err) {
     console.error(err.message);
