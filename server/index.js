@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
 require("dotenv").config();
 
-app.use("/", require("./routes/index"));
+app.use("/", require("./routes/home"));
 
 mongoose.connect(process.env.MONGODB_URI, {});
 

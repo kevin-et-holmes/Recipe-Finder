@@ -31,4 +31,15 @@ router.post("/recipes", async (req, res) => {
   }
 });
 
+router.post("/add-recipe", async (req, res) => {
+  try {
+    console.log("req.body: ", req.body);
+    db.collection("recipes").insertOne(req.body);
+    res.json(201);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;

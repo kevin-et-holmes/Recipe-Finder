@@ -34,6 +34,22 @@ function App() {
       });
   }
 
+  function addRecipe() {
+    let recipe = document.getElementById("recipeInput").value;
+    let ingredients = document.getElementById("ingredientsInput").value;
+    ingredients = ingredients.toString().split(",");
+
+    axios
+      .post(`/add-recipe/`, { recipe: recipe, ingredients: ingredients })
+      .then((response) => {
+        //console.log(response.data);
+        setRecipes([...recipes, response.data]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <div className="App">
       <h1>Recipe Finder</h1>
@@ -45,10 +61,22 @@ function App() {
         Search
       </button>
       <div className="output">
-        Recipes:
+        <h4>Recipes:</h4>
         <div className="recipeList">{mappedRecipes}</div>
       </div>
       <hr className="solid" />
+      <h3>Add Recipe</h3>
+      <form id="addRecipeForm">
+        <input type="text" id="recipeInput" placeholder="Enter recipe" />
+        <input
+          type="text"
+          id="ingredientsInput"
+          placeholder="Enter ingredients"
+        />
+        <button id="addRecipeButton" onClick={addRecipe}>
+          Add Recipe
+        </button>
+      </form>
     </div>
   );
 }
